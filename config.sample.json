@@ -1,0 +1,12 @@
+{
+    "influxdb": {
+        "bucket": "bucket",
+        "org": "influxdb-org",
+        "token": "token",
+        "url": "http://localhost:8086"
+    },
+    "switchbot": {
+        "token": "access_token",
+        "secret": "secret"
+    }
+}
