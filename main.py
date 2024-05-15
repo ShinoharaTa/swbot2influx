@@ -63,11 +63,10 @@ def task():
                 save_device_status(status)
             except Exception as e:
                 print(f"Save error: {e}")
-            print("exit")
 
 
 if __name__ == "__main__":
-    schedule.every(5).minutes.do(task)
+    schedule.every(1).minutes.do(task)
 
     while True:
         schedule.run_pending()
