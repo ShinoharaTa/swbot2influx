@@ -44,7 +44,6 @@ def save_device_status(status: dict):
 def task():
     """定期実行するタスク"""
     bot = Switchbot()
-    print("a")
 
     with open("device_list.json", "r") as f:
         device_list = json.load(f)
