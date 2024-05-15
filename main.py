@@ -52,7 +52,6 @@ def task():
     for d in device_list:
         device_type = d.get("deviceType")
         if device_type == "Meter":
-            print("meter")
             try:
                 status = bot.get_device_status(d.get("deviceId"))
             except Exception as e:
