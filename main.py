@@ -56,7 +56,6 @@ def task():
             except Exception as e:
                 print(f"Request error: {e}")
                 continue
-            print(status)
 
             try:
                 save_device_status(status)
