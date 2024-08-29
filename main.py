@@ -24,7 +24,7 @@ client = InfluxDBClient(
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
 
-def save_device_status(status: dict):
+def save_device_status(status: dict, deviceName):
     """SwitchbotデバイスのステータスをInfluxDBに保存する"""
 
     device_type = status.get("deviceType")
@@ -33,7 +33,7 @@ def save_device_status(status: dict):
         p = (
             Point("Meter")
             .tag("device_id", status["deviceId"])
-            .tag("device_name", status["deviceName"])
+            .tag("device_name", deviceName)
             .field("humidity", float(status["humidity"]))
             .field("temperature", float(status["temperature"]))
         )
@@ -51,7 +51,7 @@ def task():
 
     for d in device_list:
         device_type = d.get("deviceType")
-        if device_type == "Meter" or device_type == "WoIOSensor" :
+        if device_type == "Meter" or device_type == "WoIOSensor":
             try:
                 status = bot.get_device_status(d.get("deviceId"))
             except Exception as e:
@@ -59,7 +59,7 @@ def task():
                 continue
 
             try:
-                save_device_status(status)
+                save_device_status(status, d.get("deviceName"))
             except Exception as e:
                 print(f"Save error: {e}")
 
