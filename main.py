@@ -36,6 +36,7 @@ def save_device_status(status: dict, deviceName):
             .tag("device_name", deviceName)
             .field("humidity", float(status["humidity"]))
             .field("temperature", float(status["temperature"]))
+            .field("battery", float(status["battery"]))
         )
 
         write_api.write(bucket=bucket, record=p)
