@@ -29,10 +29,11 @@ def save_device_status(status: dict):
 
     device_type = status.get("deviceType")
 
-    if device_type == "Meter":
+    if device_type == "Meter" or device_type == "WoIOSensor":
         p = (
             Point("Meter")
             .tag("device_id", status["deviceId"])
+            .tag("device_name", status["deviceName"])
             .field("humidity", float(status["humidity"]))
             .field("temperature", float(status["temperature"]))
         )
@@ -50,7 +51,7 @@ def task():
 
     for d in device_list:
         device_type = d.get("deviceType")
-        if device_type == "Meter":
+        if device_type == "Meter" or device_type == "WoIOSensor" :
             try:
                 status = bot.get_device_status(d.get("deviceId"))
             except Exception as e:
