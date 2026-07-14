@@ -66,7 +66,7 @@ def task():
 
 
 if __name__ == "__main__":
-    schedule.every(1).minutes.do(task)
+    schedule.every(5).minutes.do(task)
 
     while True:
         schedule.run_pending()
